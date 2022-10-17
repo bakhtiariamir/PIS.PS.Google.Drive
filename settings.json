@@ -1,0 +1,12 @@
+{
+    "ClientId" : "1060255430159-dihf5l91ccu5g435p6ou2dip2adl6kk7.apps.googleusercontent.com",
+    "ClientSecret" : "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",
+    "AuthorizationCode" : "4/0ARtbsJqoGBfjTc3g5r6YH8Js5Vm9a8wkiZjBcd9ojx6uMUmLvEWbkCjODrg6CnvB3Llt-w",
+    "AccessToken" : "",
+    "RefreshToken" : "",
+    "RedirectUrl" : "http://localhost/oauth2callback",
+    "GrantType" : "authorization_code",
+    "EndPoints" : {
+        "GetAccessToken" : "https://www.googleapis.com/oauth2/v4/token"
+    }
+}
