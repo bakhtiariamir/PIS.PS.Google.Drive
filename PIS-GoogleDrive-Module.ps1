@@ -1,7 +1,9 @@
 $global:ApiSettings = Get-Content $PSScriptRoot"\settings.json" | ConvertFrom-Json
+$global:ApiSettingsPath = Get-Content $PSScriptRoot"\settings.json" | ConvertFrom-Json
+
 . $PSScriptRoot"\Google-Helper.ps1"
 
-function Global:GoogleLogin {
+function Global:Login-Google {
     [CmdletBinding()]
     [Alias("glogin")]
     param(
@@ -13,5 +15,5 @@ function Global:GoogleLogin {
         [SecureString]$Password
     )
 
-    ApiGoogleGetAccessToken
+    Get-Google-Access-Token
 }

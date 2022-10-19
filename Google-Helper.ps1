@@ -1,18 +1,30 @@
-function ApiGoogleGetAccessToken{
-    $requestUri = $ApiSettings.EndPoints.GetAccessToken
+# Should Install-Module Selenium for control on chrome and open request and listen for change url
+function Get-Auhentication-Code {
+  $requestUri = $ApiSettings.EndPoints.GetAuthenticationCode;
+
+}
+
+
+function Get-Google-Access-Token {
+    $requestUri = $ApiSettings.EndPoints.GetAccessToken;
 
     $body = @{
-      code='4/0ARtbsJqoGBfjTc3g5r6YH8Js5Vm9a8wkiZjBcd9ojx6uMUmLvEWbkCjODrg6CnvB3Llt-w';
-      client_id='1060255430159-dihf5l91ccu5g435p6ou2dip2adl6kk7.apps.googleusercontent.com';
-      client_secret='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';
-      redirect_uri='http://localhost/oauth2callback';
-      grant_type="authorization_code"; # Fixed value
+      code= $ApiSettings.AuthorizationCode;
+      client_id=$ApiSettings.ClientId;
+      client_secret=$ApiSettings.ClientSecret;
+      redirect_uri=$ApiSettings.RedirectUrl;
+      grant_type=$ApiSettings.GrantType; # Fixed value
     };
-    
+    Write-Output $ApiSettings.EndPoints.GetAccessToken
+    Write-Output $body
+
 
     $tokens = Invoke-RestMethod -Uri $requestUri -Method POST -Body $body;
     $ApiSettings.RefreshToken   = $tokens.refresh_token
     $ApiSettings.AccessToken = $tokens.access_token
+
+    $ApiSettings | ConvertTo-Json -depth 100 | Out-File ApiSettingsPath
+
     # Store refreshToken
     # Set-Content $PSScriptRoot"\refreshToken.txt" $tokens.refresh_token
     # Store accessToken
